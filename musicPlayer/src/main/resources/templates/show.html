@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ShowUsers</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>age</th>
+        <th>action</th>
+    </tr>
+    <tr th:each="user, state : ${userList}">
+        <td th:utext="${user.id}"></td>
+        <td th:utext="${user.firstName}"></td>
+        <td th:utext="${user.lastName}"></td>
+        <td th:utext="${user.age}"></td>
+        <td>
+            <a id="relativeLink"  th:href ="@{/editParam(id=${user.id})}">edit</a>
+        </td>
+    </tr>
+</table>
+<div>
+    <form th:action="@{/add}" method="post" th:object="${user}">
+    <button name="Add" type="submit"></button>
+    </form>
+</div>
+</body>
+</html>
